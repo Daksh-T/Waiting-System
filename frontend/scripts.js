@@ -2,10 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const requestForm = document.getElementById('requestForm');
     const requestList = document.getElementById('requestList');
     const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const loadingIndicator = document.getElementById('loadingIndicator');
 
     // Handle form submission
     requestForm.addEventListener('submit', async (event) => {
         event.preventDefault();
+        loadingIndicator.style.display = 'block';
         const formData = new FormData(requestForm);
         const data = {
             name: formData.get('name'),
@@ -24,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
             addRequestToList(result.data);
         } catch (error) {
             console.error('Error:', error);
+        } finally {
+            loadingIndicator.style.display = 'none';
         }
     });
 

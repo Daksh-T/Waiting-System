@@ -44,3 +44,9 @@ If they are asked to come later, after the time selected has elapsed - a message
 1. Click the dark mode toggle button on the front-end interface.
 2. The front-end will switch to dark mode.
 3. To switch back to light mode, click the toggle button again.
+
+## Error Handling in the Backend
+The backend now includes error handling and validation to improve robustness. Invalid JSON data and missing required fields will result in appropriate error messages being returned to the client. Additionally, exceptions are handled gracefully, and user-friendly error messages are provided.
+
+## UI Enhancements and Dark Mode Refinements
+The front-end UI has been improved for a better user experience. The form design has been enhanced with better spacing and alignment. Loading indicators have been added for form submission to provide feedback to the user. The dark mode feature has been refined with improved color contrast for better readability, and all UI elements are properly styled in dark mode.
