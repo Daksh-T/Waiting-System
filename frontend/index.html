@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiting System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Waiting System</h1>
+        <button id="dark-mode-toggle">Toggle Dark Mode</button>
+    </header>
+    <main>
+        <section id="request-form">
+            <h2>Submit a Request</h2>
+            <form id="requestForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description"></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+        <section id="requests">
+            <h2>Requests</h2>
+            <ul id="requestList"></ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Waiting System</p>
+    </footer>
+</body>
+</html>
