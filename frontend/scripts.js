@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const requestList = document.getElementById('requestList');
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const loadingIndicator = document.getElementById('loadingIndicator');
+    let currentRequestId = null;
 
     // Handle form submission
     requestForm.addEventListener('submit', async (event) => {
@@ -23,7 +24,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(data)
             });
             const result = await response.json();
+            currentRequestId = result.id; // Store the request ID
             addRequestToList(result.data);
+            
+            // Start checking for notifications
+            if (currentRequestId) {
+                checkNotifications();
+            }
         } catch (error) {
             console.error('Error:', error);
         } finally {
@@ -36,6 +43,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const listItem = document.createElement('li');
         listItem.textContent = `${request.name}: ${request.description}`;
         requestList.appendChild(listItem);
+    }
+
+    // Function to check for notifications
+    async function checkNotifications() {
+        if (!currentRequestId) return;
+        
+        try {
+            const response = await fetch(`/api/check-notification/${currentRequestId}`);
+            const data = await response.json();
+            
+            if (data.message && data.message !== 'No notification') {
+                alert(data.message);
+                // You could use a more sophisticated notification system than alert()
+            }
+        } catch (error) {
+            console.error('Error checking notifications:', error);
+        }
+        
+        // Check again in 5 seconds
+        setTimeout(checkNotifications, 5000);
     }
 
     // Toggle dark mode
